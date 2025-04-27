@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket聊天室 - 登录</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>WebSocket聊天室</h1>
+        <form id="loginForm">
+            <input type="text" id="userId" placeholder="请输入用户名" required>
+            <button type="submit">进入聊天室</button>
+        </form>
+    </div>
+
+    <script>
+        // 登录表单提交处理
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userId = document.getElementById('userId').value.trim();
+            
+            if (userId) {
+                // 使用encodeURI而不是encodeURIComponent，保留部分特殊字符
+                // 跳转到聊天室页面，并传递用户ID
+                const userIdParam = encodeURIComponent(userId);
+                // 直接打开静态资源页面，避免通过控制器跳转
+                window.location.href = '/chat.html?userId=' + userIdParam;
+            }
+        });
+    </script>
+</body>
+</html> 
